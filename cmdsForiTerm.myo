@@ -1,5 +1,5 @@
 scriptId = 'com.smile'
-scriptTitle = "Cmds for iTerm"
+scriptTitle = "iTerm Gesture"
 scriptDetailsUrl = "" -- We don't have this until it's submitted to the Myo Market
 
 GITCOMMIT='git commit -am "by myo"'
@@ -9,7 +9,7 @@ function onPeriodic()
 end
 
 function activeAppName()
-    return "Cmds for iTerm"
+    return "iTerm Gesture"
 end
 
 function onActiveChange(isActive)
