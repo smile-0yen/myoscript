@@ -13,19 +13,19 @@ function activeAppName()
 end
 
 function onActiveChange(isActive)
-    myo.debug("Now iTerm Mode!")
 end
 
 function onForegroundWindowChange(app, title)
-    flg = false
+    isiTerm = false
     if app == "com.googlecode.iterm2" then
-        flg = true
+        myo.debug("Now iTerm Mode!")
+        isiTerm = true
         return true
     end
 end
 
 function onPoseEdge(pose, edge)
-    if flg then
+    if isiTerm then
         if pose == "fist" then
             pressKey(GITCOMMIT)
         elseif pose == "fingersSpread" then
