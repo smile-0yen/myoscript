@@ -1,15 +1,14 @@
 scriptId = 'com.smile'
-scriptTitle = "iTerm Gesture"
+scriptTitle = "Say Something"
 scriptDetailsUrl = "" -- We don't have this until it's submitted to the Myo Market
 
-GITCOMMIT='git commit -am "by myo"'
-GITPUSH='git push'
+GREET='Hello'
 
 function onPeriodic()
 end
 
 function activeAppName()
-    return "iTerm Gesture"
+    return "Say Something"
 end
 
 function onActiveChange(isActive)
@@ -26,12 +25,14 @@ end
 
 function onPoseEdge(pose, edge)
     if isiTerm then
-        if pose == "fist" then
-            pressKey(GITCOMMIT)
-        elseif pose == "fingersSpread" then
-            pressKey(GITPUSH)
+        if pose == "fingersSpread" then
+            sayWords(GREET)
         end
     end
+end
+
+function sayWords(str)
+    pressKey("say -v Mei-Jia " .. str)
 end
 
 -- WARN: this function ONLY for JIS keyboard
