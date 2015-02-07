@@ -1,14 +1,20 @@
 scriptId = 'com.smile'
-scriptTitle = "Say Something"
+scriptTitle = "Myo Greet"
 scriptDetailsUrl = "" -- We don't have this until it's submitted to the Myo Market
 
 GREET='Hello'
 
 function onPeriodic()
+    if isSpread then
+        yawDiff = myo.getYaw() - initYaw
+        if yawDiff > 0.05
+            sayWords(GREET)
+        end
+    end
 end
 
 function activeAppName()
-    return "Say Something"
+    return "Myo Greet"
 end
 
 function onActiveChange(isActive)
@@ -25,8 +31,11 @@ end
 
 function onPoseEdge(pose, edge)
     if isiTerm then
-        if pose == "fingersSpread" then
-            sayWords(GREET)
+        if pose == "fingersSpread" and edge == 'on' then
+            isSpread = true
+            initYaw = myo.getYaw()
+        else
+            isSpread = false
         end
     end
 end
