@@ -34,6 +34,7 @@ function onPoseEdge(pose, edge)
     end
 end
 
+-- WARN: this function ONLY for JIS keyboard
 function pressKey(str)
     i = 1
     while i <= string.len(str) do
