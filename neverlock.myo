@@ -20,7 +20,7 @@ function onPeriodic()
 end
 
 function onForegroundWindowChange(app, title)
-    myo.unlock("hold")
+    -- myo.unlock("hold")
     myo.debug("onForegroundWindowChange: " .. app .. ", " .. title .. "and unlock")
     if app == "com.googlecode.iterm2" then
         flg = true
