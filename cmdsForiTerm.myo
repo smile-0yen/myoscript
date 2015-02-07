@@ -1,0 +1,52 @@
+scriptId = 'com.smile'
+scriptTitle = "Cmds for iTerm"
+scriptDetailsUrl = "" -- We don't have this until it's submitted to the Myo Market
+
+GITCOMMIT='git commit -am "by myo"'
+GITPUSH='git push'
+
+function onPeriodic()
+end
+
+function activeAppName()
+    return "Cmds for iTerm"
+end
+
+function onActiveChange(isActive)
+    myo.debug("Now iTerm Mode!")
+end
+
+function onForegroundWindowChange(app, title)
+    flg = false
+    if app == "com.googlecode.iterm2" then
+        flg = true
+        return true
+    end
+end
+
+function onPoseEdge(pose, edge)
+    if flg then
+        if pose == "fist" then
+            pressKey(GITCOMMIT)
+        elseif pose == "fingersSpread" then
+            pressKey(GITPUSH)
+        end
+    end
+end
+
+function pressKey(str)
+    i = 1
+    while i <= string.len(str) do
+        key = string.sub(str.i,i)
+        if key == '"' then
+            myo.keyboard("2", "press", "shift")
+        elseif key == ' ' then
+            myo.keyboard("space", "press")
+        elseif key == '-' then
+            myo.keyboard("minus", "press")
+        else
+            myo.keyboard(key, "press")
+        end
+        i = i + 1
+    end   
+end
